@@ -1,0 +1,8 @@
+*.sw?
+*.log
+*.wav
+doc/*
+.DS_Store
+coverage
+rdoc
+pkg
