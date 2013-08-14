@@ -2,15 +2,22 @@
 ## :bass_drum_1
 ## :side_stick
 ## :acoustic_snare
+#
 ## :electric_snare
 ## :low_floor_tom
 ## :closed_hi_hat
-## :low_tom
+#
 ## :open_hi_hat
+## :low_tom
+## :pedal_hi_hat
+#
 ## :high_mid_tom
 ## :crash_cymbal_1
+#
 ## :splash_cymbal
-## :pedal_hi_hat
+#
+## :cowbell
+## :crash_cymbal_2
 
 set_config(:beats_per_minute=>120, :time_signature=>'4/4', :resolution=>'1/64')
 
