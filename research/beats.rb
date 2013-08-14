@@ -1,3 +1,17 @@
+## Drum Kit
+## :bass_drum_1
+## :side_stick
+## :acoustic_snare
+## :electric_snare
+## :low_floor_tom
+## :closed_hi_hat
+## :low_tom
+## :open_hi_hat
+## :high_mid_tom
+## :crash_cymbal_1
+## :splash_cymbal
+## :pedal_hi_hat
+
 set_config(:beats_per_minute=>120, :time_signature=>'4/4', :resolution=>'1/64')
 
 
@@ -16,7 +30,7 @@ end
 if sources.include?('nanoKONTROL')
   add_input('nanoKONTROL')
   add_cc(:switch, 13, :type => :switch)
-  fast_speed = 16
+  fast_speed = 32
   str 'your-beaches', nil, :ch=>0 do |pattern|
     if cc(:switch)
       [pr(:bass_drum_1, :l => fast_speed/2), pr(:low_mid_tom, :l => fast_speed/2)]
