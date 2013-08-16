@@ -27,7 +27,7 @@ len = 8
 
 if sources.include?('nanoKONTROL')
   add_input('nanoKONTROL')
-  add_cc(:mult, 17, :type => :cont, :min => 0, :max => 2, :init => 0)
+  add_cc(:mult, 17, :type => :cont, :min => 0, :max => 3, :init => 0)
 end
 
 motoric = [nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
