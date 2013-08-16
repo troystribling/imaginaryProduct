@@ -23,45 +23,35 @@
 ## :crash_cymbal_2
 
 set_config(:beats_per_minute=>120, :time_signature=>'4/4', :resolution=>'1/64')
-
-
-str 'kicking-1-3', [pr(:bass_drum_1), n(:R), pr(:bass_drum_1), n(:R)], :ch=>0 do |pattern|
-  pattern
-end
-
-str 'kicking-and-crashing', nl(pr(:bass_drum_1, :l => 8), pr(:crash_cymbal_2, :l => 8)), :ch=>0 do |pattern|
-  pattern
-end
-
-str 'motorik', nil, :ch=>0 do |pattern|
-  len = 8
-  [nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
-   nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
-   nl(pr(:acoustic_snare,:l=>len),pr(:open_hi_hat, :l=>len)),
-   nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
-   nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
-   nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
-   nl(pr(:acoustic_snare,:l=>len),pr(:open_hi_hat, :l=>len)),
-   nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len))]
-end
-
-fast_speed = 32
-str 'gallop', [pr(:low_floor_tom, :l => fast_speed),
-               pr(:low_tom, :l => fast_speed),
-               n(:R, :l=> fast_speed),
-               pr(:high_mid_tom, :l => fast_speed)], :ch=>0 do |pattern|
-  pattern
-end
+len = 8
 
 if sources.include?('nanoKONTROL')
-  fast_speed = 32
   add_input('nanoKONTROL')
-  add_cc(:switch, 13, :type => :switch)
-  str 'your-beaches', nil, :ch=>0 do |pattern|
-    if cc(:switch)
-      [pr(:bass_drum_1, :l => fast_speed/2), pr(:low_mid_tom, :l => fast_speed/2)]
-    else
-      [pr(:bass_drum_1, :l => fast_speed), pr(:low_mid_tom, :l => fast_speed)]
-    end
-  end
+  add_cc(:mult, 17, :type => :cont, :min => 0, :max => 2, :init => 0)
+end
+
+motoric = [nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
+           nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
+           nl(pr(:acoustic_snare,:l=>len),pr(:open_hi_hat, :l=>len)),
+           nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
+           nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
+           nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
+           nl(pr(:acoustic_snare,:l=>len),pr(:open_hi_hat, :l=>len)),
+           nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len))]
+str 'motorik', motoric, :ch=>0 do |pattern|
+  pattern.length = (2**cc(:mult).to_i)*len
+  pattern
+end
+
+str 'gallop', [pr(:low_floor_tom, :l => len),
+               pr(:low_tom, :l => len),
+               n(:R, :l=> len),
+               pr(:high_mid_tom, :l => len)], :ch=>0 do |pattern|
+  pattern.length = (2**cc(:mult).to_i)*len
+  pattern
+end
+
+str 'your-beaches', [pr(:bass_drum_1, :l => len), pr(:low_mid_tom, :l => len)], :ch=>0 do |pattern|
+  pattern.length = (2**cc(:mult).to_i)*len
+  pattern
 end
