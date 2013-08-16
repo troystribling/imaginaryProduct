@@ -12,6 +12,7 @@
 ## :open_hi_hat
 ## :low_tom
 ## :pedal_hi_hat
+## :ride_cymbal_1
 #
 ## :high_mid_tom
 ## :crash_cymbal_1
