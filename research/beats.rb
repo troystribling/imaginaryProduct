@@ -39,19 +39,16 @@ motoric = [nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len)),
            nl(pr(:acoustic_snare,:l=>len),pr(:open_hi_hat, :l=>len)),
            nl(pr(:bass_drum_1,:l=>len),pr(:open_hi_hat, :l=>len))]
 str 'motorik', motoric, :ch=>0 do |pattern|
-  pattern.length = (2**cc(:mult).to_i)*len
-  pattern
+  pattern.length!((2**cc(:mult).to_i)*len)
 end
 
 str 'gallop', [pr(:low_floor_tom, :l => len),
                pr(:low_tom, :l => len),
                n(:R, :l=> len),
                pr(:high_mid_tom, :l => len)], :ch=>0 do |pattern|
-  pattern.length = (2**cc(:mult).to_i)*len
-  pattern
+  pattern.length!((2**cc(:mult).to_i)*len)
 end
 
 str 'your-beaches', [pr(:bass_drum_1, :l => len), pr(:low_mid_tom, :l => len)], :ch=>0 do |pattern|
-  pattern.length = (2**cc(:mult).to_i)*len
-  pattern
+  pattern.length!((2**cc(:mult).to_i)*len)
 end
