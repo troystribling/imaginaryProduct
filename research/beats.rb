@@ -26,8 +26,10 @@ set_config(:beats_per_minute=>120, :time_signature=>'4/4', :resolution=>'1/64')
 
 if sources.include?('nanoKONTROL')
   add_input('nanoKONTROL')
-  add_cc(:mult, 17, :type => :cont, :min => 0, :max => 3, :init => 0)
+elsif sources.include?('GECO')
+  add_input('GECO')
 end
+add_cc(:mult, 17, :type => :cont, :min => 0, :max => 3, :init => 0)
 
 vlen = 8
 motoric = [nl(pr(:bass_drum_1,:l=>vlen),pr(:open_hi_hat, :l=>vlen)),
