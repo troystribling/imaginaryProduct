@@ -7,11 +7,15 @@ elsif sources.include?('GECO')
 end
 add_cc(:mode, 17, :type => :cont, :min => 0, :max => 6, :init => 0)
 
-str 'cycle', np([:Fs, 4], :dorian, :l=>4)[5,1,3,7] do |pattern|
+str 'cycle', np([:Fs, 4], :dorian, :l=>4)[5,3,7,1] do |pattern|
   pattern.push(pattern.shift.first).mode!(cc(:mode).to_i)
 end
 
-str 'strum', cp([:As, 4], :dorian, :l=>4)[3,5,7,1].arp!(32) do |pattern|
+str 'anti-cycle', np([:Fs, 4], :dorian, :l=>4)[5,3,7,1] do |pattern|
+  pattern.unshift(pattern.pop.first).mode!(cc(:mode).to_i)
+end
+
+str 'arp', cp([:As, 4], :dorian, :l=>4)[3,5,2,7].arp!(32) do |pattern|
   pattern
 end
 
